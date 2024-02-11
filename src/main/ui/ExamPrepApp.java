@@ -11,10 +11,13 @@ public class ExamPrepApp {
     private CourseList courseList;
     private Scanner input;
 
+    // EFFECTS: Runs exam preperation app
     public ExamPrepApp() {
         runApp();
     }
 
+    // MODIFIES: this
+    // EFFECTS: runs user interface, allowing users to interact with app
     public void runApp() {
         boolean keepRunning = true;
         int action;
@@ -37,6 +40,8 @@ public class ExamPrepApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds course to this app's courselist
     private void addCourse() {
         System.out.println("Enter the name of the course you would like to add:");
         String name = input.next();
@@ -54,6 +59,7 @@ public class ExamPrepApp {
 
     }
 
+    // EFFECTS: displays names of all courses to user
     private void viewCourses() {
         if (courseList.isEmpty()) {
             System.out.println("You have no courses.");
@@ -65,6 +71,7 @@ public class ExamPrepApp {
         }
     }
 
+    // EFFECTS: selects user inputted course
     private void selectCourse() {
         System.out.println("Select course by name: ");
         String name = input.next();
@@ -72,6 +79,8 @@ public class ExamPrepApp {
         courseAction(course);
     }
 
+    // MODIFIES: this
+    // EFFECTS: conducts action on selected course in courseList
     public void courseAction(Course c) {
         System.out.println("Select action from options below: \n"
                 + " - (1) Add practice problem \n - (2) View practice problems");
@@ -86,6 +95,8 @@ public class ExamPrepApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds practice problem to the selected course
     private void addPracticeProblem(Course c) {
         System.out.println("Enter title of practice problem");
         String title = input.next();
@@ -108,6 +119,8 @@ public class ExamPrepApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: initializes user's courseList
     public void init() {
         courseList = new CourseList();
         input = new Scanner(System.in).useDelimiter("\n");

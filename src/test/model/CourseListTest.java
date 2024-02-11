@@ -84,5 +84,6 @@ public class CourseListTest {
         assertEquals(c2, courseList.findCourse("C2"));
         assertEquals(c3, courseList.findCourse("C3"));
         assertEquals(c4, courseList.findCourse("C4"));
+        assertNull(courseList.findCourse("C5"));
     }
 }
