@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+// Represents a list of added courses
 public class CourseList {
     ArrayList<Course> listOfCourse;
 
