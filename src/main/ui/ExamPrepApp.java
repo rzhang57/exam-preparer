@@ -3,16 +3,23 @@ package ui;
 import model.Course;
 import model.CourseList;
 import model.PracticeProblem;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Exam preparation application
 public class ExamPrepApp {
+    private static final String DIRECTORY = "./data/examprep.json";
     private CourseList courseList;
     private Scanner input;
+    private JsonReader reader;
+    private JsonWriter writer;
 
     // EFFECTS: Runs exam preperation app
-    public ExamPrepApp() {
+    public ExamPrepApp() throws FileNotFoundException {
         runApp();
     }
 
@@ -23,8 +30,8 @@ public class ExamPrepApp {
         int action;
         init();
         while (keepRunning) {
-            System.out.println("Select from the following to begin: \n"
-                    + " - (1) Add course \n - (2) View list of courses \n - (3) Select course \n - (4) Quit");
+            System.out.println("Select from the following to begin: \n - (1) Add course\n - (2) View list of courses"
+                    + "\n - (3) Select course \n - (4) Save current file \n - (5) Load previous file \n - (6) Quit");
             action = input.nextInt();
             if (action == 1) {
                 addCourse();
@@ -33,6 +40,10 @@ public class ExamPrepApp {
             } else if (action == 3) {
                 selectCourse();
             } else if (action == 4) {
+                saveCourseList();
+            } else if (action == 5) {
+                loadCourseList();
+            } else if (action == 6) {
                 keepRunning = false;
             } else {
                 System.out.println("Invalid input, try again");
@@ -76,7 +87,11 @@ public class ExamPrepApp {
         System.out.println("Select course by name: ");
         String name = input.next();
         Course course = courseList.findCourse(name);
-        courseAction(course);
+        if (course != null) {
+            courseAction(course);
+        } else {
+            System.out.println("Error, not valid course name");
+        }
     }
 
     // MODIFIES: this
@@ -124,5 +139,27 @@ public class ExamPrepApp {
     public void init() {
         courseList = new CourseList();
         input = new Scanner(System.in).useDelimiter("\n");
+        reader = new JsonReader(DIRECTORY);
+        writer = new JsonWriter(DIRECTORY);
+    }
+
+    private void saveCourseList() {
+        try {
+            writer.open();
+            writer.write(courseList);
+            writer.close();
+            System.out.println("Your progress has been saved.");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file at " + DIRECTORY);
+        }
+    }
+
+    private void loadCourseList() {
+        try {
+            courseList = reader.read();
+            System.out.println("Loaded your courses and practice problems from " + DIRECTORY);
+        } catch (IOException e) {
+            System.out.println("Unable to read file from directory: " + DIRECTORY);
+        }
     }
 }

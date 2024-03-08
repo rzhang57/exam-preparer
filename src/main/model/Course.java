@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // Represents a given course with a name and its practice problems
-public class Course {
+public class Course implements Writable {
 
     private String courseName;
     private ArrayList<PracticeProblem> listOfPracticeProblems;
@@ -45,5 +49,22 @@ public class Course {
     // EFFECTS: returns true if list of practice problems is empty, false otherwise
     public boolean isEmpty() {
         return listOfPracticeProblems.isEmpty();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("courseName", courseName);
+        json.put("pProblems", jsonArrayHelper());
+        return json;
+    }
+
+    public JSONArray jsonArrayHelper() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (PracticeProblem p : listOfPracticeProblems) {
+            jsonArray.put(p.toJson());
+        }
+        return jsonArray;
     }
 }

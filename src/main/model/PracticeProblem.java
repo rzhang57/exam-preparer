@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a practice problem with a problem title, solution, and status
-public class PracticeProblem {
+public class PracticeProblem implements Writable {
 
     private String problemTitle;
     private String problemBody;
@@ -18,6 +21,13 @@ public class PracticeProblem {
         this.problemBody = problemBody;
         this.solution = solution;
         this.status = 0;
+    }
+
+    public PracticeProblem(String problemTitle, String problemBody, String solutio, int status) {
+        this.problemTitle = problemTitle;
+        this.problemBody = problemBody;
+        this.solution = solution;
+        this.status = status;
     }
 
     /*
@@ -57,6 +67,16 @@ public class PracticeProblem {
     // EFFECTS: sets current status to given integer s
     public void setStatus(int s) {
         status = s;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("pTitle", problemTitle);
+        json.put("pBody", problemBody);
+        json.put("pSolution", solution);
+        json.put("pStatus", status);
+        return json;
     }
 
 }

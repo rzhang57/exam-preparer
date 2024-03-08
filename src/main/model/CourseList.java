@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // Represents a list of added courses
-public class CourseList {
+public class CourseList implements Writable {
     ArrayList<Course> listOfCourse;
 
     /*
@@ -49,5 +53,17 @@ public class CourseList {
             }
         }
         return null;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        for (Course c : listOfCourse) {
+            jsonArray.put(c.toJson());
+        }
+        json.put("courseList", jsonArray);
+
+        return json;
     }
 }
