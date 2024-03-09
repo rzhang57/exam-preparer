@@ -37,4 +37,4 @@ With a feature to filter the various statuses, I think this solves that problem.
 - As a user, I want to be able to change the status of a given practice problem once I have started reviewing it or mastered it.
 - As a user, I want to be able to filter out my practice problems so I can focus on the ones with the status which I want to see.
 - As a user, I want to be able to save all the Courses I have as well as their respective practice problems as I desire.
-- As a user, I want to be able to load all the Courses and their respective practice problems as I desire.
+- As a user, I want to be able to load all the Courses and view their respective practice problems as I desire.

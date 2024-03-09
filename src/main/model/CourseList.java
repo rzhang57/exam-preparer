@@ -55,6 +55,7 @@ public class CourseList implements Writable {
         return null;
     }
 
+    //EFFECTS: returns this course list as JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

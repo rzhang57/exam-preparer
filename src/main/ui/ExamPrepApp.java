@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 // Exam preparation application
+// Citation: Partially inspired by the WorkRoom project provided by the 210 course staff
 public class ExamPrepApp {
     private static final String DIRECTORY = "./data/examprep.json";
     private CourseList courseList;
@@ -143,6 +144,7 @@ public class ExamPrepApp {
         writer = new JsonWriter(DIRECTORY);
     }
 
+    // EFFECTS: saves course list and all attributed data
     private void saveCourseList() {
         try {
             writer.open();
@@ -154,6 +156,8 @@ public class ExamPrepApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads course list from file directory
     private void loadCourseList() {
         try {
             courseList = reader.read();

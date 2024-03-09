@@ -51,6 +51,7 @@ public class Course implements Writable {
         return listOfPracticeProblems.isEmpty();
     }
 
+    //EFFECTS: returns course as JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -59,6 +60,7 @@ public class Course implements Writable {
         return json;
     }
 
+    // EFFECTS: returns JSON array interpretation of the list of Practice Problems in Course
     public JSONArray jsonArrayHelper() {
         JSONArray jsonArray = new JSONArray();
 

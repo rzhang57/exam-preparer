@@ -55,6 +55,7 @@ public class JsonWriterTest extends JsonTest {
             PracticeProblem p1 = new PracticeProblem("1", "1");
             PracticeProblem p2 = new PracticeProblem("2", "2");
             c1.addPracticeProblem(p1);
+            c1.addPracticeProblem(p2);
             c2.addPracticeProblem(p2);
             cl.addCourse(c1);
             cl.addCourse(c2);
@@ -71,6 +72,8 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(2, courses.size());
             checkCourse("Math", c1);
             checkCourse("CS", c2);
+            assertEquals(2, c1.getListOfPracticeProblems().size());
+            assertEquals(1, c2.getListOfPracticeProblems().size());
 
         } catch (IOException e) {
             fail("IOException unexpected");
