@@ -104,9 +104,11 @@ public class ExamPrepApp {
         if (action == 1) {
             addPracticeProblem(c);
         } else if (action == 2) {
-            System.out.println("Problems in " + c.getCourseName());
-            for (String s : c.getListOfPracticeProblemNames()) {
-                System.out.println(" - " + s);
+            int count = 1;
+            for (PracticeProblem p : c.getListOfPracticeProblems()) {
+                System.out.println("(" + count + ") " + p.getTitle() + ":\n" + "Body: " + p.getBody()
+                                + "\nSolution: " + p.getSolution() + "\n" + p.getStatus() + "\n ");
+                count++;
             }
         }
     }

@@ -23,7 +23,7 @@ public class PracticeProblem implements Writable {
         this.status = 0;
     }
 
-    public PracticeProblem(String problemTitle, String problemBody, String solutio, int status) {
+    public PracticeProblem(String problemTitle, String problemBody, String solution, int status) {
         this.problemTitle = problemTitle;
         this.problemBody = problemBody;
         this.solution = solution;
