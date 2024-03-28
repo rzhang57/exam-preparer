@@ -55,6 +55,18 @@ public class CourseList implements Writable {
         return null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes course given name
+    public boolean removeCourseByName(String courseName) {
+        for (Course c : listOfCourse) {
+            if (courseName.equals(c.getCourseName())) {
+                listOfCourse.remove(c);
+                return true;
+            }
+        }
+        return false;
+    }
+
     //EFFECTS: returns this course list as JSON object
     @Override
     public JSONObject toJson() {
@@ -67,4 +79,6 @@ public class CourseList implements Writable {
 
         return json;
     }
+
+
 }

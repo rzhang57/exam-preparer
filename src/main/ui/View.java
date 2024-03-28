@@ -26,6 +26,7 @@ public class View extends JFrame {
     private static final int HEIGHT = 720;
     private static final String DIRECTORY = "./data/examprep.json";
     private JPanel courseListPanel;
+    private JButton removeButton;
 
     // MODIFIES: this
     // EFFECTS: Initializes main frame for the viewing of the application
@@ -39,6 +40,7 @@ public class View extends JFrame {
         addButton = new JButton("Add Course");
         loadButton = new JButton("Load");
         saveButton = new JButton("Save");
+        removeButton = new JButton("Remove Course");
         ImageIcon image = new ImageIcon(getClass().getResource("books.png"));
         JLabel imageLabel = new JLabel(image);
         JLabel mainLabel = new JLabel("Select course below to open new window: ");
@@ -48,7 +50,6 @@ public class View extends JFrame {
         addActions(addButton, loadButton, saveButton);
         mainPanel.add(new JScrollPane(courseListPanel), BorderLayout.CENTER);
         navigationBarAdd(navigationBar, imageLabel);
-        mainPanel.add(addButton, BorderLayout.SOUTH);
         mainPanel.add(mainLabel, BorderLayout.NORTH);
         add(mainPanel);
         add(navigationBar, BorderLayout.NORTH);
@@ -61,6 +62,8 @@ public class View extends JFrame {
         navigationBar.add(imageLabel, BorderLayout.EAST);
         navigationBar.add(loadButton, BorderLayout.NORTH);
         navigationBar.add(saveButton, BorderLayout.NORTH);
+        navigationBar.add(addButton, BorderLayout.NORTH);
+        navigationBar.add(removeButton, BorderLayout.NORTH);
     }
 
     // EFFECTS: establishes action listener for various buttons
@@ -68,6 +71,7 @@ public class View extends JFrame {
         addButtonAction(addButton);
         loadButtonAction(loadButton);
         saveButtonAction(saveButton);
+        removeButtonAction();
     }
 
     // MODIFIES: this, courseList, course
@@ -86,6 +90,30 @@ public class View extends JFrame {
                             "Invalid course name!", "Error", JOptionPane.ERROR_MESSAGE);
                 }
                 updateCourseList();
+            }
+        });
+    }
+
+    // EFFECTS: this, courseList
+    // EFFECTS: removes course based on course name inputted by user if found
+    private void removeButtonAction() {
+        removeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String courseName = JOptionPane.showInputDialog(View.this, "Enter the name of the course to remove:");
+                if (courseName != null) {
+                    boolean removed = courseList.removeCourseByName(courseName);
+                    if (removed) {
+                        JOptionPane.showMessageDialog(View.this, "Course removed successfully!");
+                        updateCourseList();
+                    } else {
+                        JOptionPane.showMessageDialog(View.this,
+                                "Course not found!", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(View.this,
+                            "Invalid course name!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
