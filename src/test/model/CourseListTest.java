@@ -86,4 +86,15 @@ public class CourseListTest {
         assertEquals(c4, courseList.findCourse("C4"));
         assertNull(courseList.findCourse("C5"));
     }
+
+    @Test
+    public void testRemoveCourse() {
+        courseList.addCourse(c2);
+        courseList.addCourse(c3);
+        assertTrue(courseList.removeCourseByName("C2"));
+        assertFalse(courseList.removeCourseByName("C1"));
+        assertFalse(courseList.isEmpty());
+        assertTrue(courseList.removeCourseByName("C3"));
+        assertTrue(courseList.isEmpty());
+    }
 }
