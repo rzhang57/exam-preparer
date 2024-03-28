@@ -39,3 +39,12 @@ With a feature to filter the various statuses, I think this solves that problem.
 - As a user, I want to be able to save all the Courses I have as well as their respective practice problems as I desire.
 - As a user, I want to be able to load all the Courses and be able to view their respective practice problems as I desire.
 - As a user, I want to be able to have the option to load my previously saved data upon running the application.
+
+# Instructions for Grader
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by running the application, and pressing the "Add Course" button on the bottom of the screen, entering the name of the desired Course (X), and pressing the OK button to add a course to a student's Exam Course List (Y).
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by clicking button of any desired course to enter/ select it, which will display all of the practice problems in a text area.
+- You can generate another action related to the user story "adding multiple Xs to a Y" by clicking the course button, and then the + practice problem button, then typing in the title, body, solution, and then pressing OK. This will modify the course by adding a practice problem to its list of practice problems.
+- You can locate my visual component by opening the application and looking in the top left. 
+- You can save the state of my application by pressing on the Save button in the navigation bar on the top left of the main JFrame (not course window)
+- You can reload the state of my application by pressing on the Load button in the navigation bar on the top left of the main JFrame
