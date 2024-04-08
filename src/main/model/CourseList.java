@@ -23,6 +23,9 @@ public class CourseList implements Writable {
      */
     public void addCourse(Course c) {
         listOfCourse.add(c);
+
+        Event e = new Event("Added new course (X) '" + c.getCourseName() + "' to CourseList (Y)");
+        EventLog.getInstance().logEvent(e);
     }
 
     // EFFECTS: returns list of courses
@@ -61,9 +64,13 @@ public class CourseList implements Writable {
         for (Course c : listOfCourse) {
             if (courseName.equals(c.getCourseName())) {
                 listOfCourse.remove(c);
+                Event e = new Event("Removed course (X) '" + courseName + "' from CourseList(Y)");
+                EventLog.getInstance().logEvent(e);
                 return true;
             }
         }
+        Event e = new Event("Failed to remove course (X) '" + courseName + "' from CourseList (Y)");
+        EventLog.getInstance().logEvent(e);
         return false;
     }
 

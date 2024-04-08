@@ -49,3 +49,40 @@ With a feature to filter the various statuses, I think this solves that problem.
 - You can locate my visual component by opening the application and looking in the top left which shows an image of books. 
 - You can save the state of my application by pressing on the Save button in the navigation bar on the top left of the main JFrame (not course window)
 - You can reload the state of my application by pressing on the Load button in the navigation bar on the top left of the main JFrame
+
+# Phase 4: Task 2
+
+Find a representative sample of logged events (adding and removing Course (X) from CourseList (Y) below)
+
+Sun Apr 07 17:30:10 PDT 2024
+Added new course (X) 'Math 100' to CourseList (Y)
+
+Sun Apr 07 17:30:13 PDT 2024
+Added new course (X) 'Math 101' to CourseList (Y)
+
+Sun Apr 07 17:30:16 PDT 2024
+Added new course (X) 'CPSC 110' to CourseList (Y)
+
+Sun Apr 07 17:30:20 PDT 2024
+Added new course (X) 'CPSC 210' to CourseList (Y)
+
+Sun Apr 07 17:30:23 PDT 2024
+Added new course (X) 'CPSC 121' to CourseList (Y)
+
+Sun Apr 07 17:30:37 PDT 2024
+Added new course (X) 'WRDS 150' to CourseList (Y)
+
+Sun Apr 07 17:31:05 PDT 2024
+Failed to remove course (X) 'NotInCourseListCourse' from CourseList (Y)
+
+Sun Apr 07 17:31:10 PDT 2024
+Failed to remove course (X) 'Fail #2' from CourseList (Y)
+
+Sun Apr 07 17:31:16 PDT 2024
+Removed course (X) 'WRDS 150' from CourseList(Y)
+
+Sun Apr 07 17:31:27 PDT 2024
+Failed to remove course (X) 'CPSC 213 (not in courseList)' from CourseList (Y)
+
+Sun Apr 07 17:31:30 PDT 2024
+Removed course (X) 'CPSC 121' from CourseList(Y)

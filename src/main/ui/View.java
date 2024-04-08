@@ -2,6 +2,8 @@ package ui;
 
 import model.Course;
 import model.CourseList;
+import model.Event;
+import model.EventLog;
 import model.PracticeProblem;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -10,12 +12,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
 // GUI implemented from exam preperation application
-public class View extends JFrame {
+public class View extends JFrame implements WindowListener {
 
     private JPanel mainPanel;
     private CourseList courseList;
@@ -33,9 +37,7 @@ public class View extends JFrame {
     public View() {
         super("Exam prep app");
         courseList = new CourseList();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(WIDTH, HEIGHT);
-        setLocationRelativeTo(null);
+        windowSetup();
         mainPanel = new JPanel(new BorderLayout());
         addButton = new JButton("Add Course");
         loadButton = new JButton("Load");
@@ -54,6 +56,15 @@ public class View extends JFrame {
         add(mainPanel);
         add(navigationBar, BorderLayout.NORTH);
         setVisible(true);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: Sets up basic aspects of main JFrame window
+    private void windowSetup() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(WIDTH, HEIGHT);
+        setLocationRelativeTo(null);
+        addWindowListener(this);
     }
 
     // MODIFIES: this
@@ -258,5 +269,49 @@ public class View extends JFrame {
                 new View();
             }
         });
+    }
+
+    // EFFECTS: does nothing on this window action
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    // EFFECTS: does nothing on this window action
+    @Override
+    public void windowClosing(WindowEvent e) {
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString() + "\n");
+        }
+    }
+
+    // EFFECTS: does nothing on this window action
+    @Override
+    public void windowClosed(WindowEvent e) {
+
+    }
+
+    // EFFECTS: does nothing on this window action
+    @Override
+    public void windowIconified(WindowEvent e) {
+
+    }
+
+    // EFFECTS: does nothing on this window action
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    // EFFECTS: does nothing on this window action
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    // EFFECTS: Prints out all logged events of a session when the main JFrame window is deactivated/ closed
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 }
