@@ -31,6 +31,8 @@ public class View extends JFrame implements WindowListener {
     private static final String DIRECTORY = "./data/examprep.json";
     private JPanel courseListPanel;
     private JButton removeButton;
+    private JsonWriter writer;
+    private JsonReader reader;
 
     // MODIFIES: this
     // EFFECTS: Initializes main frame for the viewing of the application
@@ -56,6 +58,8 @@ public class View extends JFrame implements WindowListener {
         add(mainPanel);
         add(navigationBar, BorderLayout.NORTH);
         setVisible(true);
+        writer = new JsonWriter(DIRECTORY);
+        reader = new JsonReader(DIRECTORY);
     }
 
     // MODIFIES: this
@@ -135,7 +139,6 @@ public class View extends JFrame implements WindowListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    JsonWriter writer = new JsonWriter(DIRECTORY);
                     writer.open();
                     writer.write(courseList);
                     writer.close();
@@ -156,7 +159,6 @@ public class View extends JFrame implements WindowListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    JsonReader reader = new JsonReader(DIRECTORY);
                     courseList = reader.read();
                     JOptionPane.showMessageDialog(View.this,
                             "Course list loaded successfully!", "Information", JOptionPane.INFORMATION_MESSAGE);

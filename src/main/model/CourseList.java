@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 // Represents a list of added courses
 public class CourseList implements Writable {
-    ArrayList<Course> listOfCourse;
+    private ArrayList<Course> listOfCourse;
 
     /*
     EFFECTS: Creates empty list of courses

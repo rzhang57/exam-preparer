@@ -86,3 +86,8 @@ Failed to remove course (X) 'CPSC 213 (not in courseList)' from CourseList (Y)
 
 Sun Apr 07 17:31:30 PDT 2024
 Removed course (X) 'CPSC 121' from CourseList(Y)
+
+# Phase 4: Task 3
+I think particularly, my View class needs a bit of refactoring which I would do if I had more time as it violates the single responsibility principle and thus has low cohesion. It is currently very long due to the amount of different things it is responsible for such as the two different types of frames, and all the different panels to name a few. I think one thing I could have done to improve the design of my app was implement a seperate class for the course specific frames that were generated for the user when they selected a particular course. This would at the very least ensure that I had two classes, each responsible for one of the two types of frames/ windows I am creating. You could argue and go further by implementing various classes responsible for the different types of panels and their contents. These things would ultimately lead to more readable code and better design.
+
+Another thing I think I could improve with the design of my program is similar to the previous point, but it applies to all classes that use the JsonReader and JsonWriter classes. I think that from my ExamPrepApp (console based ui) and my view, it would have been possible to increase cohesion by separating the responsibility of reading and writing and allocating this to a seperate class such as a JsonController class which extract the two fields of JsonWriter and JsonReader, so that the UI is solely the UI rather than the UI + writing data.
